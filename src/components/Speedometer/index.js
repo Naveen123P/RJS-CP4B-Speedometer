@@ -1,26 +1,27 @@
 // Write your code here
+// Write your code here
 import {Component} from 'react'
 import './index.css'
 
 class Speedometer extends Component {
-  state = {count: 0}
+  state = {speed: 0}
 
   onIncrement = () => {
-    if (this.prevState >= 0 && this.prevState < 200) {
-      this.setState(prevState => ({count: this.prevState.count + 10}))
+    const {speed} = this.state
+    if (speed < 200) {
+      this.setState(prevState => ({speed: prevState.speed + 10}))
     }
   }
 
   onDecrement = () => {
-    if (this.prevState >= 0 && this.prevState <= 200) {
-      this.setState(prevState => ({
-        count: this.prevState.count - 10,
-      }))
+    const {speed} = this.state
+    if (speed > 0) {
+      this.setState(prevState => ({speed: prevState.speed - 10}))
     }
   }
 
   render() {
-    const {count} = state
+    const {speed} = this.state
     return (
       <div className="bg-container">
         <h1 className="heading1">SPEEDOMETER</h1>
@@ -29,13 +30,13 @@ class Speedometer extends Component {
           className="speedometer-img"
           alt="Speedometer"
         />
-        <h1 className="heading2">Speed is {count}mph</h1>
-        <p className="para">Minlimit is 0mph Max limit is 200mph</p>
+        <h1 className="heading2">Speed is {speed}mph</h1>
+        <p className="para">Min Limit is 0mph, Max Limit is 200mph</p>
         <div>
-          <button onClick={this.onIncrement} className="button1">
+          <button onClick={this.onIncrement} className="button1" type="button">
             Accelerate
           </button>
-          <button onClick={this.onDecrement} className="button1">
+          <button onClick={this.onDecrement} className="button2" type="button">
             Apply Brake
           </button>
         </div>
